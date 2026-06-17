@@ -376,6 +376,15 @@
     line-height: 1.65;
   }
 
+  .edu-link {
+  color: var(--teal-600);
+  text-decoration: none;
+}
+
+.edu-link:hover {
+  text-decoration: underline;
+}
+  
   /* CONTACT */
   section#contact { background: linear-gradient(135deg, #F5F3FB 0%, #F0F8F6 100%); }
   section#contact .section-label { color: var(--teal-600); }
@@ -822,13 +831,22 @@
     <h2 class="section-title">Education</h2>
     <div class="edu-grid">
       <div class="edu-card">
-        <p class="edu-degree">Master of Public Health</p>
+        <p class="edu-degree">
+          <a href="documents/Rhea_Dcunha_AdditionalTranscripts.pdf" target="_blank" rel="noopener" class="edu-link">
+            Master of Public Health
+          </a>
+        </p>
         <p class="edu-school">Boston University · GPA 3.92/4.0</p>
         <p class="edu-detail">Epidemiology & Biostatistics · May 2026</p>
         <p class="edu-courses">Clinical Trials · Cancer Epidemiology · Financial Management for Health Programs · Global Mental Health</p>
       </div>
+
       <div class="edu-card">
-        <p class="edu-degree">Bachelor of Dental Surgery</p>
+        <p class="edu-degree">
+          <a href="documents/Transcript_BU001_U38951031.pdf" target="_blank" rel="noopener" class="edu-link">
+            Bachelor of Dental Surgery
+          </a>
+        </p>
         <p class="edu-school">MGM Dental College & Hospital · GPA 4.0/4.0</p>
         <p class="edu-detail">Oct 2023</p>
         <p class="edu-courses">General Human Physiology & Biochemistry · General Pathology & Microbiology · Oral and Maxillofacial Surgery</p>
