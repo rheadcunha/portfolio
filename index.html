@@ -344,6 +344,22 @@
     color: var(--gray-700);
   }
 
+  .more-recs {
+  margin-top: 1rem;
+}
+
+.more-recs summary {
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--teal-600);
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+.more-recs summary::-webkit-details-marker {
+  display: none;
+}
+
   /* EDUCATION */
   section#education { background: #fff; }
   .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
