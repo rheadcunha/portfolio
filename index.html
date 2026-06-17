@@ -360,6 +360,17 @@
   display: none;
 }
 
+  .more-section summary {
+  cursor: pointer;
+  color: var(--teal-600);
+  font-weight: 500;
+  margin: 1rem 0 2rem;
+}
+
+.more-section summary::-webkit-details-marker {
+  display: none;
+}
+
   /* EDUCATION */
   section#education { background: #fff; }
   .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.25rem; }
@@ -912,10 +923,15 @@
         <li>Merit holder in HSC Examination 2018; among the top 1% of students in Maharashtra State Board Examinations.</li>
       </ul>
     </div>
-
+    
+<details class="more-section">
+  <summary>See more</summary>
+  
     <div class="pub-item">
       <p class="pub-journal">Paper and poster presentations</p>
       <ul class="award-list">
+        <li>MPH Fellows Poster Presentation Day, BUSPH on 4th May 2026-3rd position for "Impact of Hearing Interventions on Dementia Risk and Cognitive Decline in Older Adults with Hearing Aids"<li>
+        <li>Poster presentation at BU Geospatial Data and Technologies Symposium using GIS methods to map rodent complaints across Boston<li>
         <li>E-Poster presentation on “First Bite Syndrome” at the 37th Pierre Fauchard Academy Annual Conference, Convocation and Award Ceremony, 9 December 2023.</li>
         <li>Scientific paper and E-poster presentation on “First Bite Syndrome” at Famdent, 2–4 June 2023.</li>
         <li>Poster presentation on “Digital Impressions—Here’s the scoop, no more goop!” at DENTCON 2023, 3rd position.</li>
@@ -954,6 +970,8 @@
     <div class="pub-item">
       <p class="pub-journal">Extra-curricular activities</p>
       <ul class="award-list">
+        <li>Won Best Photo award at 2026 Health “Comm”petition-BUSPH.<li>
+        <li>Won Best Photo and "Comm"unity Choice award at 2025 Health “Comm”petition-BUSPH.<li>
         <li>Won the ICD-Cynodent E-Slogan Competition on World Tobacco Day, 2023.</li>
         <li>Won the ICD-Cynodent Slogan Competition on World Oral Health Day, 2023.</li>
         <li>1st position in the Quiz Competition at MAGNUM, MGMDCH, 2022.</li>
