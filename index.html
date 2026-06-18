@@ -286,19 +286,7 @@
     color: var(--gray-700);
   }
 
-  .project-row {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin-top: 1rem;
-}
-
-.project-row .project-card {
-  flex: 1 1 320px;
-}
-  
-  .more-projects-grid {
+ .more-projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.25rem;
@@ -718,7 +706,7 @@
       <details class="more-section">
   <summary>See more</summary> 
 
-<div class="project-row">
+  <div class="more-projects-grid">
     <div class="project-card">
       <span class="project-tag">Finance · Budget Analysis</span>
       <p class="project-title">Budget Monitoring and Variance Analysis</p>
@@ -780,7 +768,8 @@
   <p class="project-title">Zambia DHS 2018: Severe Stunting Analysis</p>
   <p class="project-desc">
 Using multiple linear regression (n=8,744), children from the poorest households had lower height-for-age Z-scores than the middle wealth group (β=-0.121), while children from the richest households had higher scores (β=0.169). In multivariable logistic regression, the poorer group had higher odds of severe stunting (OR=1.251), and the richest group had lower odds (OR=0.743).
-  <div class="project-tools">
+ </p>
+        <div class="project-tools">
     <span class="tool-pill">ANOVA</span>
     <span class="tool-pill">Multiple linear regression</span>
     <span class="tool-pill">Multivariable logistic regression</span>
