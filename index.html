@@ -480,9 +480,176 @@
     .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
     .stats-strip { gap: 2rem; }
   }
+
+  /* ===== INTERACTIVE ENHANCEMENTS ===== */
+
+  /* Scroll progress bar */
+  #scroll-progress {
+    position: fixed;
+    top: 0; left: 0;
+    height: 3px;
+    width: 0%;
+    background: linear-gradient(90deg, var(--teal-400), var(--purple-400), var(--coral-400));
+    z-index: 200;
+    transition: width 0.08s linear;
+  }
+
+  /* Nav gets a soft shadow once you've scrolled, and shows the active section */
+  nav.scrolled { box-shadow: 0 2px 14px rgba(61,61,58,0.06); }
+  .nav-links a { position: relative; }
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -6px;
+    width: 0%; height: 2px;
+    background: var(--teal-400);
+    transition: width 0.25s ease;
+  }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--teal-600); }
+  .nav-links a.active::after { width: 100%; }
+
+  /* Hero cursor-glow */
+  .hero { position: relative; overflow: hidden; }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: var(--glow-y, 20%); left: var(--glow-x, 50%);
+    width: 480px; height: 480px;
+    background: radial-gradient(circle, rgba(123,196,175,0.16), rgba(212,201,237,0.08) 45%, transparent 70%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 0;
+    transition: opacity 0.4s ease;
+  }
+  .hero > * { position: relative; z-index: 1; }
+
+  .hero h1, .hero-eyebrow, .hero-lead, .hero-badges, .hero-ctas {
+    opacity: 0;
+    animation: heroRise 0.7s ease forwards;
+  }
+  .hero-eyebrow { animation-delay: 0.05s; }
+  .hero h1 { animation-delay: 0.15s; }
+  .hero-lead { animation-delay: 0.3s; }
+  .hero-badges { animation-delay: 0.42s; }
+  .hero-ctas { animation-delay: 0.54s; }
+  @keyframes heroRise {
+    from { opacity: 0; transform: translateY(14px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .badge { transition: transform 0.2s ease, box-shadow 0.2s ease; cursor: default; }
+  .badge:hover { transform: translateY(-2px) scale(1.04); box-shadow: 0 3px 10px rgba(61,61,58,0.08); }
+
+  .btn-primary, .btn-outline { position: relative; overflow: hidden; }
+  .btn-primary::after, .btn-outline::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(255,255,255,0.35);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+    pointer-events: none;
+  }
+  .btn-primary:active::after, .btn-outline:active::after { transform: scaleX(1); }
+
+  /* Animated stat count-up support */
+  .stat-item { transition: transform 0.25s ease; }
+  .stat-item:hover { transform: translateY(-3px); }
+
+  /* Generic scroll-reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger.is-visible { transition-delay: var(--reveal-delay, 0s); }
+
+  .section-title { position: relative; }
+  .section-title::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--teal-400);
+    margin-top: 10px;
+    transition: width 0.6s ease 0.15s;
+  }
+  .reveal.is-visible .section-title::after { width: 44px; }
+
+  /* Experience timeline feel */
+  .exp-item { position: relative; }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 2.1rem;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--teal-400);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+  }
+  .exp-item.is-visible::before { transform: scale(1); }
+
+  /* Project card tilt + shine */
+  .project-card { transform-style: preserve-3d; will-change: transform; }
+  .project-card .project-title { transition: color 0.2s ease; }
+  .project-card:hover .project-title { color: var(--teal-600); }
+
+  .tool-pill { transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease; }
+  .project-card:hover .tool-pill { background: var(--teal-50); color: var(--teal-800); }
+  .tool-pill:hover { transform: translateY(-1px); }
+
+  .skill-tag { transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease, color 0.18s ease; cursor: default; }
+  .skill-tag:hover {
+    transform: translateY(-2px);
+    background: var(--teal-50);
+    border-color: var(--teal-100);
+    color: var(--teal-800);
+  }
+
+  .pub-item, .edu-card { transition: transform 0.2s ease, box-shadow 0.2s ease; }
+  .pub-item:hover, .edu-card:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(61,61,58,0.06); }
+
+  .contact-link { transition: border-color 0.2s, background 0.2s, transform 0.2s; }
+  .contact-link:hover { transform: translateY(-2px); }
+
+  /* Back to top */
+  #back-to-top {
+    position: fixed;
+    right: 1.5rem; bottom: 1.5rem;
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: var(--teal-400);
+    color: #fff;
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    opacity: 0; visibility: hidden;
+    transform: translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, background 0.2s ease, visibility 0.25s;
+    z-index: 150;
+    box-shadow: 0 4px 14px rgba(61,61,58,0.15);
+  }
+  #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+  #back-to-top:hover { background: var(--teal-600); }
+  #back-to-top svg { width: 18px; height: 18px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero h1, .hero-eyebrow, .hero-lead, .hero-badges, .hero-ctas,
+    .reveal, .exp-item, .project-card, #back-to-top { animation: none !important; transition: none !important; opacity: 1 !important; transform: none !important; }
+    .hero::before { display: none; }
+  }
 </style>
 </head>
 <body>
+
+<div id="scroll-progress"></div>
 
 <nav>
   <span class="nav-name">Rhea Dcunha</span>
@@ -1125,13 +1292,7 @@ Using multiple linear regression (n=8,744), children from the poorest households
     </div>
   </div>
 </section>
-  
-  <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
 <!-- CONTACT -->
 <section id="contact">
   <div class="section-inner">
@@ -1167,6 +1328,171 @@ Using multiple linear regression (n=8,744), children from the poorest households
   © 2026 Rhea Joel Dcunha 
 </footer>
 
+<button id="back-to-top" aria-label="Back to top" title="Back to top">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 19V5M5 12l7-7 7 7"/>
+  </svg>
+</button>
+
+<script>
+(function () {
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- Scroll progress bar + nav shadow ---- */
+  var progressBar = document.getElementById('scroll-progress');
+  var nav = document.querySelector('nav');
+  var backToTop = document.getElementById('back-to-top');
+
+  function onScroll() {
+    var scrollTop = window.scrollY || document.documentElement.scrollTop;
+    var docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    var pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+    progressBar.style.width = pct + '%';
+
+    if (scrollTop > 8) nav.classList.add('scrolled');
+    else nav.classList.remove('scrolled');
+
+    if (scrollTop > 500) backToTop.classList.add('visible');
+    else backToTop.classList.remove('visible');
+  }
+  document.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  backToTop.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: reduceMotion ? 'auto' : 'smooth' });
+  });
+
+  /* ---- Active nav link highlighting ---- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav-links a'));
+  var navTargets = navLinks
+    .map(function (link) {
+      var id = link.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      return el ? { link: link, el: el } : null;
+    })
+    .filter(Boolean);
+
+  function updateActiveNav() {
+    var scrollPos = window.scrollY + 120;
+    var current = null;
+    navTargets.forEach(function (t) {
+      if (t.el.offsetTop <= scrollPos) current = t;
+    });
+    navLinks.forEach(function (l) { l.classList.remove('active'); });
+    if (current) current.link.classList.add('active');
+  }
+  document.addEventListener('scroll', updateActiveNav, { passive: true });
+  updateActiveNav();
+
+  /* ---- Hero cursor glow ---- */
+  var hero = document.querySelector('.hero');
+  if (hero && !reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    hero.addEventListener('mousemove', function (e) {
+      var rect = hero.getBoundingClientRect();
+      var x = ((e.clientX - rect.left) / rect.width) * 100;
+      var y = ((e.clientY - rect.top) / rect.height) * 100;
+      hero.style.setProperty('--glow-x', x + '%');
+      hero.style.setProperty('--glow-y', y + '%');
+    });
+  }
+
+  /* ---- Scroll-reveal for sections, cards, and list items ---- */
+  var revealSelectors = [
+    '.section-label', '.section-title',
+    '.exp-item', '.project-card', '.pub-item', '.edu-card'
+  ];
+  var revealEls = document.querySelectorAll(revealSelectors.join(','));
+
+  if (reduceMotion) {
+    revealEls.forEach(function (el) { el.classList.add('reveal', 'is-visible'); });
+  } else if ('IntersectionObserver' in window) {
+    revealEls.forEach(function (el) { el.classList.add('reveal'); });
+
+    // stagger project cards within the grid slightly
+    document.querySelectorAll('.projects-grid').forEach(function (grid) {
+      Array.prototype.forEach.call(grid.children, function (child, i) {
+        if (child.classList.contains('reveal')) {
+          child.style.setProperty('--reveal-delay', Math.min(i * 0.06, 0.3) + 's');
+          child.classList.add('reveal-stagger');
+        }
+      });
+    });
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+    revealEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('reveal', 'is-visible'); });
+  }
+
+  /* ---- Animated stat counters ---- */
+  var statNums = document.querySelectorAll('.stat-num');
+  var statsAnimated = false;
+
+  function animateStats() {
+    if (statsAnimated) return;
+    statsAnimated = true;
+    statNums.forEach(function (el) {
+      var raw = el.textContent.trim();
+      var match = raw.match(/^([\d.]+)(.*)$/);
+      if (!match) return;
+      var target = parseFloat(match[1]);
+      var suffix = match[2] || '';
+      var isDecimal = match[1].indexOf('.') !== -1;
+      var duration = 1100;
+      var startTime = null;
+
+      if (reduceMotion) return;
+
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var eased = 1 - Math.pow(1 - progress, 3);
+        var current = target * eased;
+        el.textContent = (isDecimal ? current.toFixed(2) : Math.round(current)) + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+        else el.textContent = raw;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  var statsStrip = document.querySelector('.stats-strip');
+  if (statsStrip && 'IntersectionObserver' in window) {
+    var statsObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateStats();
+          statsObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.4 });
+    statsObserver.observe(statsStrip);
+  }
+
+  /* ---- Subtle tilt on project cards ---- */
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.project-card').forEach(function (card) {
+      card.addEventListener('mousemove', function (e) {
+        var rect = card.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width - 0.5;
+        var y = (e.clientY - rect.top) / rect.height - 0.5;
+        card.style.transform = 'perspective(600px) rotateX(' + (y * -4) + 'deg) rotateY(' + (x * 4) + 'deg) translateY(-2px)';
+      });
+      card.addEventListener('mouseleave', function () {
+        card.style.transform = '';
+      });
+    });
+  }
+})();
+</script>
+
 </body>
 </html>
-
